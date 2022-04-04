@@ -8,4 +8,7 @@
   - *index.html* : 這邊不會寫任何 html，而是藉由 component 生成 
   - *index.js* : 將 component 渲染到 index.html 的地方 
   
-## 
+## Project list
+1. [First Head React Component][1]
+
+[1]: https://github.com/jasonLuFa/ReactTrek/tree/main/first-head-react-component
