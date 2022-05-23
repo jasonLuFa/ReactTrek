@@ -20,7 +20,9 @@ function App() {
     const autoSlider = setTimeout(() => {
       setPeopleIndex(peopleIndex + 1);
     }, 4000);
-    return clearTimeout(autoSlider);
+    return () => {
+      clearTimeout(autoSlider);
+    };
   });
 
   return (
