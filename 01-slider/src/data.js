@@ -35,6 +35,15 @@ const people = [
     quote:
       'Marfa af yr 3 wolf moon kogi, readymade distillery asymmetrical seitan kale chips fingerstache cloud bread mustache twee messenger bag. ',
   },
+  {
+    id: 5,
+    image:
+      'https://media.istockphoto.com/photos/smiling-indian-man-looking-at-camera-picture-id1270067126?k=20&m=1270067126&s=612x612&w=0&h=ZMo10u07vCX6EWJbVp27c7jnnXM2z-VXLd-4maGePqc=',
+    name: 'Dean Olsen',
+    title: 'product manager',
+    quote:
+      'A great product manager has the brain of an engineer, the heart of a designer, and the speech of a diplomat. ',
+  },
 ];
 
 export default people;
