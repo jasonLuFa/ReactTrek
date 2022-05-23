@@ -197,6 +197,10 @@ article .title {
     opacity: 0;
     transition: var(--transition);
   }
+  article p {
+    margin: 0.5rem auto;
+    width: 60vw;
+  }
   article.activeSlide {
     opacity: 1;
     transform: translateX(0);
@@ -233,5 +237,12 @@ article .title {
   .prev:hover,
   .next:hover {
     background: var(--clr-primary-6);
+  }
+}
+@media screen and (max-width: 576px) {
+  .prev,
+  .next {
+    width: 1.3rem;
+    height: 1.3rem;
   }
 }
