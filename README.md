@@ -27,7 +27,7 @@
 5. [To List][5]
 6. [Weather Observation][6]
 
-[1]: https://github.com/jasonLuFa/ReactTrek
+[1]: https://github.com/jasonLuFa/ReactTrek/tree/main/01-slider
 [2]: https://github.com/jasonLuFa/ReactTrek
 [3]: https://github.com/jasonLuFa/ReactTrek
 [4]: https://github.com/jasonLuFa/ReactTrek
