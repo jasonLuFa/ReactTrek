@@ -142,19 +142,16 @@ Slider
 .title span {
   color: var(--clr-primary-4);
 }
-
 .section-center {
-  margin: 0 auto;
   margin-top: 3rem;
-  width: 90vw;
   display: flex;
   flex-wrap: wrap;
-  max-width: 1080px;
+  justify-content: center;
   text-align: center;
-  gap: 0.5rem;
+  gap: 1rem 0.5rem;
 }
 article {
-  flex: 1 0 calc(33.33% - 1rem);
+  flex: 0 0 calc(33.33% -1rem);
 }
 article h4 {
   color: var(--clr-primary-3);
@@ -162,8 +159,8 @@ article h4 {
   font-size: larger;
 }
 article p {
-  margin: 0.5rem auto;
-  width: 20rem;
+  margin: 0 auto 0.5rem;
+  width: 21rem;
 }
 article .title {
   color: var(--clr-primary-4);
@@ -183,6 +180,7 @@ article .title {
 }
 @media screen and (max-width: 1080px) {
   .section-center {
+    margin: 3rem auto 0;
     width: 80vw;
     height: 30rem;
     position: relative;
@@ -190,6 +188,7 @@ article .title {
   }
   article {
     position: absolute;
+    margin: 0 auto;
     top: 0;
     left: 0;
     width: 100%;
