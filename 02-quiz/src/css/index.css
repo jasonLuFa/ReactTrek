@@ -32,10 +32,11 @@ Variables
   --clr-grey-10: hsl(210, 36%, 96%);
   --clr-white: #fff;
   --clr-red-dark: hsl(360, 67%, 44%);
-  --clr-red-light: hsl(360, 71%, 66%);
+  --clr-red-light: rgb(195, 82, 82);
   --clr-green-dark: hsl(125, 67%, 44%);
   --clr-green-light: hsl(125, 71%, 66%);
-  --clr-black: #222;
+  --clr-black-1: rgb(34, 34, 34);
+  --clr-black-2: rgba(0, 0, 0, 0.7);
   --transition: all 0.3s linear;
   --spacing: 0.1rem;
   --radius: 0.25rem;
@@ -139,4 +140,18 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+button,
+label {
+  display: block;
+  border: transparent var(--radius);
+  font-size: 1rem;
+  letter-spacing: var(--spacing);
+}
+@media screen and (max-width: 576px) {
+  button,
+  label {
+    letter-spacing: 0;
+  }
 }

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useState, useContext, useEffect, createContext } from 'react';
 
 const table = {
@@ -7,50 +6,34 @@ const table = {
   politics: 24,
 };
 
-const tempUrl =
-  'https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple';
-
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [isWaiting, setIsWaiting] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [questions, setQuestions] = useState([]);
-  const [questionIndex, setQuestionIndex] = useState(0);
-  const [correctNumber, setCorrectNumber] = useState(0);
-  const [isError, setIsError] = useState(false);
+  const [correctCount, setCorrectCount] = useState(0);
   const [quiz, setQuiz] = useState({
     amount: 10,
     category: 'sport',
     difficulty: 'easy',
   });
-  const [isWarningModalOpen, setIsWarningModalOpen] = useState(false);
-
-  const fetchQuestions = async (url) => {
-    setIsLoading(true);
-    const response = await axios(url).catch((err) => console.log(err));
-    if (!response) {
-      setIsWaiting(true);
-      return;
-    }
-    const data = response.data.results;
-    if (data.length <= 0) {
-      setIsWaiting(true);
-      setIsError(true);
-      return;
-    }
-    setQuestions(data);
-    setIsWaiting(false);
-    setIsLoading(false);
-    setIsError(false);
-  };
-
-  useEffect(() => {
-    fetchQuestions(tempUrl);
-  }, []);
+  const [isOpenWarningModal, setIsOpenWarningModal] = useState(false);
+  const [isShowAnswer, setIsShowAnswer] = useState(false);
 
   return (
-    <AppContext.Provider value={{ isWaiting, isLoading }}>
+    <AppContext.Provider
+      value={{
+        isWaiting,
+        setIsWaiting,
+        questions,
+        setQuestions,
+        correctCount,
+        isOpenWarningModal,
+        setIsOpenWarningModal,
+        isShowAnswer,
+        setIsShowAnswer,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

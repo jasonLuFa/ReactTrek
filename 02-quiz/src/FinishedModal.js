@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './css/FinishedModal.css';
 
 const FinishedModal = () => {
   const [isFinishedModalOpen, setIsFinishedModalOpen] = useState(false);
