@@ -3,11 +3,7 @@ import { useEffect, useState } from 'react';
 import { useGlobalContext } from './context';
 import SetupForm from './SetupForm';
 import Loading from './Loading';
-import axios from 'axios';
 import WarningModal from './WarningModal';
-
-const tempUrl =
-  'https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple';
 
 const isWarningModalCheck = () => {
   const isWarningModalCheck = localStorage.getItem('isWarningModalCheck');
@@ -19,48 +15,23 @@ const isWarningModalCheck = () => {
 };
 
 function App() {
-  const [questionIndex, setQuestionIndex] = useState(0);
-  const [isLoading, setIsLoading] = useState(true);
-  const [selectedAnswer, setSelectedAnswer] = useState();
-  const [correctAnswer, setCorrectAnswer] = useState(0);
-  const [isWarning, setIsWarning] = useState(false);
   const {
     isWaiting,
-    setIsWaiting,
-    questions,
-    setQuestions,
+    isLoading,
+    questionIndex,
+    quiz,
     correctNumber,
     isOpenWarningModal,
     setIsOpenWarningModal,
     isShowAnswer,
+    selectedAnswer,
+    setSelectedAnswer,
+    reviewQuizzes,
   } = useGlobalContext();
-
-  const fetchQuestions = async (url) => {
-    setIsLoading(true);
-    const response = await axios(url).catch((err) => console.log(err));
-    if (!response) {
-      setIsWaiting(true);
-      return;
-    }
-    const data = response.data.results;
-    if (data.length <= 0) {
-      setIsWaiting(true);
-
-      return;
-    }
-    // console.log(data);
-    setQuestions(data);
-    setIsWaiting(false);
-    setIsLoading(false);
-  };
 
   const handleSubmit = () => {
     setIsOpenWarningModal(isWarningModalCheck);
   };
-
-  useEffect(() => {
-    fetchQuestions(tempUrl);
-  }, []);
 
   if (isWaiting) {
     return <SetupForm />;
@@ -70,17 +41,13 @@ function App() {
     return <Loading />;
   }
 
-  const { question, incorrect_answers, correct_answer } =
-    questions[questionIndex];
-  const answers = [...incorrect_answers, correct_answer];
+  const { correctAnswer, answers, question } = reviewQuizzes[questionIndex];
 
   if (isShowAnswer) {
     return (
       <main>
         <section className='quiz'>
-          <p className='total-questions'>
-            total questions : {questions.length}
-          </p>
+          <p className='total-questions'>total questions : {quiz.amount}</p>
           <p className='correct-answers-number'>
             correct number : {correctNumber}/{questionIndex}
           </p>
@@ -108,7 +75,7 @@ function App() {
     <main>
       {isOpenWarningModal && <WarningModal />}
       <section className='quiz'>
-        <p className='total-questions'>total questions : {questions.length}</p>
+        <p className='total-questions'>total questions : {quiz.amount}</p>
         <p className='correct-answers-number'>
           correct number : {correctNumber}/{questionIndex}
         </p>

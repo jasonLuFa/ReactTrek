@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState, useContext, useEffect, createContext } from 'react';
 
 const table = {
@@ -5,11 +6,14 @@ const table = {
   history: 23,
   politics: 24,
 };
-
+const tempUrl =
+  'https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple';
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [isWaiting, setIsWaiting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [questionIndex, setQuestionIndex] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [correctCount, setCorrectCount] = useState(0);
   const [quiz, setQuiz] = useState({
@@ -17,21 +21,60 @@ const AppProvider = ({ children }) => {
     category: 'sport',
     difficulty: 'easy',
   });
+  const [selectedAnswer, setSelectedAnswer] = useState('');
   const [isOpenWarningModal, setIsOpenWarningModal] = useState(false);
   const [isShowAnswer, setIsShowAnswer] = useState(false);
+  const [reviewQuizzes, setReviewQuizzes] = useState([
+    // { question: '', answers: [], correctAnswer: [], selectedAnswer: '' },
+  ]);
+
+  const fetchQuestions = async (url) => {
+    setIsLoading(true);
+    const response = await axios(url).catch((err) => console.log(err));
+    if (!response) {
+      setIsWaiting(true);
+      return;
+    }
+    const data = response.data.results;
+    if (data.length <= 0) {
+      setIsWaiting(true);
+
+      return;
+    }
+    console.log(data);
+    setQuestions(data);
+
+    const {
+      question,
+      incorrect_answers: incorrectAnswer,
+      correct_answer: correctAnswer,
+    } = data[questionIndex];
+    const answers = [...incorrectAnswer, correctAnswer];
+    setReviewQuizzes([...reviewQuizzes, { question, correctAnswer, answers }]);
+    setIsWaiting(false);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    fetchQuestions(tempUrl);
+  }, []);
 
   return (
     <AppContext.Provider
       value={{
         isWaiting,
         setIsWaiting,
-        questions,
-        setQuestions,
-        correctCount,
+        isLoading,
+        questionIndex,
+        quiz,
         isOpenWarningModal,
         setIsOpenWarningModal,
+        selectedAnswer,
+        setSelectedAnswer,
         isShowAnswer,
         setIsShowAnswer,
+        reviewQuizzes,
+        setReviewQuizzes,
       }}
     >
       {children}
