@@ -22,20 +22,43 @@ Quiz
 .quiz-container h2 {
   margin-bottom: 2rem;
 }
-
+.anwser-container {
+  position: relative;
+}
+.check-icon,
+.cancel-icon {
+  top: 50%;
+  left: 22%;
+  transform: translateY(-50%);
+  position: absolute;
+}
+.cancel-icon {
+  font-size: 1.3rem;
+  color: var(--clr-red-light);
+}
+.check-icon {
+  font-size: 1.5rem;
+  color: var(--clr-green-light);
+}
+@media screen and (max-width: 576px) {
+  .cancel-icon,
+  .check-icon {
+    left: 5%;
+  }
+}
 .answer-btn {
   width: 100%;
-  margin: 0.75rem auto;
   padding: 0.5rem 0;
+  margin: 0.75rem auto;
   background-color: var(--clr-primary-7);
   transition: var(--transition);
   cursor: pointer;
 }
-.disabled-cursour {
-  cursor: auto;
+.disabled-cursor {
+  cursor: not-allowed !important;
 }
 
-.answer-btn:hover :not(button.disabled-cursour) {
+.answer-btn:not(.disabled-cursor):hover {
   background-color: var(--clr-primary-5);
   color: var(--clr-white);
 }
@@ -60,14 +83,18 @@ Quiz
   transition: var(--transition);
   cursor: pointer;
 }
-.next-btn:hover {
+.next-btn.disabled-cursor {
+  color: var(--clr-grey-7);
+  background-color: var(--clr-grey-9);
+}
+.next-btn:not(.disabled-cursor):hover {
   background: #805900;
   color: #ffb100;
 }
 
 .correct-btn {
-  background: var(--clr-green-light);
+  background: var(--clr-green-dark);
 }
 .wrong-btn {
-  background: var(--clr-red-light);
+  background: var(--clr-red-dark);
 }

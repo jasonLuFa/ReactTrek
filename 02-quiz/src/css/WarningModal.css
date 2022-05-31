@@ -9,6 +9,7 @@
   align-items: center;
   opacity: 0;
   background: var(--clr-black-2);
+  z-index: 999;
 }
 .modal-content {
   width: 90vw;

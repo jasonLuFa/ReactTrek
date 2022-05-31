@@ -28,6 +28,16 @@ const AppProvider = ({ children }) => {
     // { question: '', answers: [], correctAnswer: [], selectedAnswer: '' },
   ]);
 
+  const getQuestion = (questions) => {
+    const {
+      question,
+      incorrect_answers: incorrectAnswer,
+      correct_answer: correctAnswer,
+    } = questions[questionIndex];
+    const answers = [...incorrectAnswer, correctAnswer];
+    return { question, correctAnswer, answers };
+  };
+
   const fetchQuestions = async (url) => {
     setIsLoading(true);
     const response = await axios(url).catch((err) => console.log(err));
@@ -44,12 +54,7 @@ const AppProvider = ({ children }) => {
     console.log(data);
     setQuestions(data);
 
-    const {
-      question,
-      incorrect_answers: incorrectAnswer,
-      correct_answer: correctAnswer,
-    } = data[questionIndex];
-    const answers = [...incorrectAnswer, correctAnswer];
+    const { question, correctAnswer, answers } = getQuestion(data);
     setReviewQuizzes([...reviewQuizzes, { question, correctAnswer, answers }]);
     setIsWaiting(false);
     setIsLoading(false);
@@ -65,7 +70,10 @@ const AppProvider = ({ children }) => {
         isWaiting,
         setIsWaiting,
         isLoading,
+        questions,
         questionIndex,
+        setQuestionIndex,
+        getQuestion,
         quiz,
         isOpenWarningModal,
         setIsOpenWarningModal,

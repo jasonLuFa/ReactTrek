@@ -3,23 +3,32 @@ import './css/WarningModal.css';
 import { useGlobalContext } from './context';
 
 const WarningModal = () => {
-  const [isWarningModalCheck, setIsWarningModalCheck] = useState(false);
-  const { isOpenWarningModal, setIsOpenWarningModal, setIsShowAnswer } =
-    useGlobalContext();
+  const [isShowWarningModal, setIsShowWarningModal] = useState(true);
+  const {
+    setIsOpenWarningModal,
+    setIsShowAnswer,
+    reviewQuizzes,
+    setReviewQuizzes,
+    selectedAnswer,
+    questionIndex,
+  } = useGlobalContext();
 
   const handleCancel = () => {
     setIsOpenWarningModal(false);
   };
 
   const handleSure = () => {
-    setIsOpenWarningModal(isWarningModalCheck);
+    setIsOpenWarningModal(false);
     setIsShowAnswer(true);
+    const newReviewQuizzes = reviewQuizzes.slice(0, -1);
+    const updatedReview = { ...reviewQuizzes[questionIndex], selectedAnswer };
+    setReviewQuizzes([...newReviewQuizzes, updatedReview]);
   };
 
-  useEffect(
-    () => localStorage.setItem('isWarningModalCheck', isWarningModalCheck),
-    [isWarningModalCheck]
-  );
+  useEffect(() => {
+    localStorage.setItem('isShowWarningModal', isShowWarningModal);
+    // setIsOpenWarningModal(isShowWarningModal);
+  }, [isShowWarningModal]);
 
   return (
     <div className='modal-container isOpen'>
@@ -28,17 +37,17 @@ const WarningModal = () => {
         <label className='checkbox'>
           <input
             type='checkbox'
-            defaultChecked={isWarningModalCheck}
-            onChange={() => setIsWarningModalCheck(!isWarningModalCheck)}
+            defaultChecked={!isShowWarningModal}
+            onChange={() => setIsShowWarningModal(!isShowWarningModal)}
           />
           Don't ask me again!
         </label>
         <div className='warning-button-container'>
-          <button className='sure-btn' onClick={handleSure}>
-            sure
-          </button>
           <button className='cancel-btn' onClick={handleCancel}>
             cancel
+          </button>
+          <button className='sure-btn' onClick={handleSure}>
+            sure
           </button>
         </div>
       </div>
