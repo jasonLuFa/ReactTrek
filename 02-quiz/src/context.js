@@ -7,7 +7,7 @@ const table = {
   politics: 24,
 };
 const tempUrl =
-  'https://opentdb.com/api.php?amount=10&category=21&difficulty=easy&type=multiple';
+  'https://opentdb.com/api.php?amount=2&category=21&difficulty=easy&type=multiple';
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
@@ -24,19 +24,10 @@ const AppProvider = ({ children }) => {
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [isOpenWarningModal, setIsOpenWarningModal] = useState(false);
   const [isShowAnswer, setIsShowAnswer] = useState(false);
+  const [isOpenReviews, setIsOpenReviews] = useState(false);
   const [reviewQuizzes, setReviewQuizzes] = useState([
     // { question: '', answers: [], correctAnswer: [], selectedAnswer: '' },
   ]);
-
-  const getQuestion = (questions) => {
-    const {
-      question,
-      incorrect_answers: incorrectAnswer,
-      correct_answer: correctAnswer,
-    } = questions[questionIndex];
-    const answers = [...incorrectAnswer, correctAnswer];
-    return { question, correctAnswer, answers };
-  };
 
   const fetchQuestions = async (url) => {
     setIsLoading(true);
@@ -54,8 +45,6 @@ const AppProvider = ({ children }) => {
     console.log(data);
     setQuestions(data);
 
-    const { question, correctAnswer, answers } = getQuestion(data);
-    setReviewQuizzes([...reviewQuizzes, { question, correctAnswer, answers }]);
     setIsWaiting(false);
     setIsLoading(false);
   };
@@ -63,6 +52,17 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     fetchQuestions(tempUrl);
   }, []);
+
+  const getQuestion = (questions) => {
+    console.log(questionIndex);
+    const {
+      question,
+      incorrect_answers: incorrectAnswer,
+      correct_answer: correctAnswer,
+    } = questions[questionIndex];
+    const answers = [...incorrectAnswer, correctAnswer];
+    return { question, correctAnswer, answers };
+  };
 
   return (
     <AppContext.Provider
@@ -83,6 +83,10 @@ const AppProvider = ({ children }) => {
         setIsShowAnswer,
         reviewQuizzes,
         setReviewQuizzes,
+        correctCount,
+        setCorrectCount,
+        isOpenReviews,
+        setIsOpenReviews,
       }}
     >
       {children}
