@@ -15,6 +15,8 @@ const QuestionPage = () => {
     setIsShowAnswer,
     correctCount,
     setCorrectCount,
+    reviews,
+    setReviews,
   } = useGlobalContext();
 
   const isOpenWarningModalFromStorage = () => {
@@ -38,6 +40,10 @@ const QuestionPage = () => {
     }
     setIsOpenWarningModal(isOpenWarningModalFromStorage());
     setIsShowAnswer(!isOpenWarningModalFromStorage());
+    setReviews([
+      ...reviews,
+      { question, answers, correctAnswer, selectedAnswer },
+    ]);
   };
 
   return (

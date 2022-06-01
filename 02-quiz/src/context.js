@@ -24,6 +24,7 @@ const AppProvider = ({ children }) => {
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [isOpenWarningModal, setIsOpenWarningModal] = useState(false);
   const [isShowAnswer, setIsShowAnswer] = useState(false);
+  const [reviews, setReviews] = useState([]);
   const [isOpenReviews, setIsOpenReviews] = useState(false);
 
   const fetchQuestions = async (url) => {
@@ -79,6 +80,8 @@ const AppProvider = ({ children }) => {
         setIsShowAnswer,
         correctCount,
         setCorrectCount,
+        reviews,
+        setReviews,
         isOpenReviews,
         setIsOpenReviews,
       }}

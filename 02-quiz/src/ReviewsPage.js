@@ -14,7 +14,7 @@ const ReviewsPage = () => {
       </div>
       <div className='reviews-center'>
         {questions.map((quiz, index) => {
-          return <Answer key={index} questions={questions} index={index} />;
+          return <Answer key={index} index={index} />;
         })}
       </div>
     </section>

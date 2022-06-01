@@ -34,9 +34,9 @@ const AnswerPage = () => {
       <section className='quiz'>
         <p className='total-questions'>total questions : {quiz.amount}</p>
         <p className='correct-answers-number'>
-          correct number : {correctCount}/{questionIndex}
+          correct number : {correctCount}/{questionIndex + 1}
         </p>
-        <Answer questions={questions} index={questionIndex} />
+        <Answer index={questionIndex} />
         <button className='next-btn' onClick={handleNextQuestion}>
           next question
         </button>
