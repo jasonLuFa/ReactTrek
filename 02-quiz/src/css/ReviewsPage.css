@@ -1,0 +1,19 @@
+.reviewsPage {
+}
+.title {
+  text-align: center;
+}
+.underline {
+  width: 100px;
+  height: 0.3rem;
+  margin: 0 auto;
+  background-color: var(--clr-red-dark);
+}
+@media screen and (max-width: 800px) {
+  .underline {
+    width: 75px;
+  }
+}
+.reviews-center {
+  margin-top: 2rem;
+}

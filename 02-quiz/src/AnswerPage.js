@@ -1,15 +1,12 @@
 import React from 'react';
 import { useGlobalContext } from './context';
-import { BiCheckCircle } from 'react-icons/bi';
-import { ImCancelCircle } from 'react-icons/im';
+import Answer from './Answer';
 
 const AnswerPage = () => {
   const {
     quiz,
     questionIndex,
-    getQuestion,
     questions,
-    selectedAnswer,
     setSelectedAnswer,
     setIsOpenWarningModal,
     setIsShowAnswer,
@@ -17,16 +14,6 @@ const AnswerPage = () => {
     correctCount,
     setIsOpenReviews,
   } = useGlobalContext();
-
-  const { question, correctAnswer, answers } = getQuestion(questions);
-
-  const isWrongAnswer = (answer) => {
-    return answer === selectedAnswer && answer !== correctAnswer;
-  };
-
-  const isCorrectAnswer = (answer) => {
-    return answer === correctAnswer;
-  };
 
   const handleNextQuestion = () => {
     setSelectedAnswer('');
@@ -37,7 +24,6 @@ const AnswerPage = () => {
       const index = oldIndex + 1;
       if (index > questions.length - 1) {
         setIsOpenReviews(true);
-        console.log('hello world');
         return 0;
       }
       return index;
@@ -50,37 +36,7 @@ const AnswerPage = () => {
         <p className='correct-answers-number'>
           correct number : {correctCount}/{questionIndex}
         </p>
-        <article className='quiz-container'>
-          <h2 dangerouslySetInnerHTML={{ __html: question }}></h2>
-          <div className='answers-container'>
-            {answers.map((answer, index) => {
-              return (
-                <div key={index} className='anwser-container'>
-                  {isCorrectAnswer(answer) && (
-                    <BiCheckCircle className='check-icon' />
-                  )}
-                  {isWrongAnswer(answer) && (
-                    <ImCancelCircle className='cancel-icon' />
-                  )}
-
-                  <button
-                    dangerouslySetInnerHTML={{
-                      __html: answer,
-                    }}
-                    className={`answer-btn disabled-cursor ${
-                      isWrongAnswer(answer)
-                        ? 'wrong-btn '
-                        : isCorrectAnswer(answer)
-                        ? 'correct-btn'
-                        : ''
-                    }
-                    `}
-                  ></button>
-                </div>
-              );
-            })}
-          </div>
-        </article>
+        <Answer questions={questions} index={questionIndex} />
         <button className='next-btn' onClick={handleNextQuestion}>
           next question
         </button>

@@ -25,9 +25,6 @@ const AppProvider = ({ children }) => {
   const [isOpenWarningModal, setIsOpenWarningModal] = useState(false);
   const [isShowAnswer, setIsShowAnswer] = useState(false);
   const [isOpenReviews, setIsOpenReviews] = useState(false);
-  const [reviewQuizzes, setReviewQuizzes] = useState([
-    // { question: '', answers: [], correctAnswer: [], selectedAnswer: '' },
-  ]);
 
   const fetchQuestions = async (url) => {
     setIsLoading(true);
@@ -53,13 +50,12 @@ const AppProvider = ({ children }) => {
     fetchQuestions(tempUrl);
   }, []);
 
-  const getQuestion = (questions) => {
-    console.log(questionIndex);
+  const getQuestion = (questions, index) => {
     const {
       question,
       incorrect_answers: incorrectAnswer,
       correct_answer: correctAnswer,
-    } = questions[questionIndex];
+    } = questions[index];
     const answers = [...incorrectAnswer, correctAnswer];
     return { question, correctAnswer, answers };
   };
@@ -81,8 +77,6 @@ const AppProvider = ({ children }) => {
         setSelectedAnswer,
         isShowAnswer,
         setIsShowAnswer,
-        reviewQuizzes,
-        setReviewQuizzes,
         correctCount,
         setCorrectCount,
         isOpenReviews,

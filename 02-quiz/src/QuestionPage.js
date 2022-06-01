@@ -15,8 +15,6 @@ const QuestionPage = () => {
     setIsShowAnswer,
     correctCount,
     setCorrectCount,
-    reviewQuizzes,
-    setReviewQuizzes,
   } = useGlobalContext();
 
   const isOpenWarningModalFromStorage = () => {
@@ -29,21 +27,15 @@ const QuestionPage = () => {
     return JSON.parse(isOpenWarningModalFromStorage);
   };
 
-  const { question, correctAnswer, answers } = getQuestion(questions);
+  const { question, correctAnswer, answers } = getQuestion(
+    questions,
+    questionIndex
+  );
 
   const handleCheckAnswer = () => {
     if (selectedAnswer === correctAnswer) {
       setCorrectCount((count) => count + 1);
     }
-    setReviewQuizzes([
-      ...reviewQuizzes,
-      {
-        question,
-        answers,
-        correctAnswer,
-        selectedAnswer,
-      },
-    ]);
     setIsOpenWarningModal(isOpenWarningModalFromStorage());
     setIsShowAnswer(!isOpenWarningModalFromStorage());
   };
