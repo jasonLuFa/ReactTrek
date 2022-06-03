@@ -1,5 +1,5 @@
 # ReactTrek
-**My trek thru React, teach myself how to use React**
+**My trek thru React, teach myself how to use React with project**
 
 ## Setup React Environment
 - chrome extension : [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
@@ -16,7 +16,7 @@
 
 ## Project Purpose
 - Be familiar with React Hook by practicing mini project
-- Some project will also use popluar React packages, tools like React Router6, Axios, Redux and so on.
+- Some project will also use popluar React packages, tools like `React Router6`, `Axios`, `Redux and so on.
 - Learning Testing by my partial finished project.
 
 ## Project list
