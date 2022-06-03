@@ -22,11 +22,19 @@
   width: 100%;
   border-radius: var(--radius);
 }
+.warning-container {
+  display: flex;
+  justify-content: space-between;
+}
+.warning {
+  color: var(--clr-red-dark);
+  font-size: 1.3rem;
+}
 .error {
   color: var(--clr-red-dark);
   text-transform: capitalize;
 }
 .submit-btn {
   width: 100%;
-  margin-top: 3rem;
+  margin-top: 0;
 }

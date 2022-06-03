@@ -23,8 +23,6 @@ const AnswerPage = () => {
       const index = oldIndex + 1;
       if (index > questions.length - 1) {
         setIsOpenReviews(true);
-        // setIndex(0) move to ReviewPage
-        // return 0;
       }
       return index;
     });

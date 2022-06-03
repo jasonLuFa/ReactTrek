@@ -1,17 +1,14 @@
 import { useState } from 'react';
 import './css/SetupForm.css';
 import { useGlobalContext } from './context';
+import { AiFillWarning } from 'react-icons/ai';
 
 const SetupForm = () => {
-  const { setIsLoading, quiz, setQuiz, handleSubmit } = useGlobalContext();
-
-  const [isError, setIsError] = useState(false);
+  const { quiz, setQuiz, handleSubmit, isError } = useGlobalContext();
 
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(name);
-    console.log(value);
     setQuiz({ ...quiz, [name]: value });
   };
 
@@ -62,9 +59,12 @@ const SetupForm = () => {
             </select>
           </div>
           {isError && (
-            <p className='error'>
-              can't generate questions, please try different options
-            </p>
+            <div className='warning-container'>
+              <AiFillWarning className='warning' />
+              <p className='error'>
+                can't generate questions, please try different options
+              </p>
+            </div>
           )}
           <button type='submit' onClick={handleSubmit} className='submit-btn'>
             start

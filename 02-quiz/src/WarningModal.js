@@ -17,7 +17,6 @@ const WarningModal = () => {
 
   useEffect(() => {
     localStorage.setItem('isShowWarningModal', isShowWarningModal);
-    // setIsOpenWarningModal(isShowWarningModal);
   }, [isShowWarningModal]);
 
   return (

@@ -22,9 +22,9 @@ const ReviewsPage = () => {
     setQuestionIndex(0);
     setQuestions([]);
     setCorrectCount(0);
-    // setQuiz();
     setReviews([]);
     setIsOpenReviews(false);
+    localStorage.setItem('isShowWarningModal', true);
   };
 
   return (
