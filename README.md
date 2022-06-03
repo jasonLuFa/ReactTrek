@@ -19,6 +19,12 @@
 - Some project will also use popluar React packages, tools like `React Router6`, `Axios`, `Redux and so on.
 - Learning Testing by my partial finished project.
 
+## Some Rule of Hooks and components
+ + Component must be uppercase of first letter
+ + Hooks starts with useXXX
+ + Hooks Invoke inside function/component body
+ + Don't call hooks conditonally ( ex: write useEffect in if statement) 
+
 ## Project list
 1. [Slider][1]
 2. [Quiz][2]
