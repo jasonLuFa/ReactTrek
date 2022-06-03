@@ -20,11 +20,11 @@ const AnswerPage = () => {
     setIsOpenWarningModal(false);
     setIsShowAnswer(false);
     setQuestionIndex((oldIndex) => {
-      console.log(oldIndex);
       const index = oldIndex + 1;
       if (index > questions.length - 1) {
         setIsOpenReviews(true);
-        return 0;
+        // setIndex(0) move to ReviewPage
+        // return 0;
       }
       return index;
     });
@@ -34,7 +34,7 @@ const AnswerPage = () => {
       <section className='quiz'>
         <p className='total-questions'>total questions : {quiz.amount}</p>
         <p className='correct-answers-number'>
-          correct number : {correctCount}/{questionIndex + 1}
+          correct count : {correctCount}/{questionIndex + 1}
         </p>
         <Answer index={questionIndex} />
         <button className='next-btn' onClick={handleNextQuestion}>

@@ -71,6 +71,7 @@ const AppProvider = ({ children }) => {
         questionIndex,
         setQuestionIndex,
         getQuestion,
+        setQuestions,
         quiz,
         isOpenWarningModal,
         setIsOpenWarningModal,

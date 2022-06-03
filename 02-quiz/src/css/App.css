@@ -19,6 +19,10 @@ Quiz
 .total-questions {
   margin-bottom: 0;
 }
+.review-container .quiz-container {
+  padding: 1.5rem;
+  background-color: var(--clr-white);
+}
 .quiz-container h2 {
   margin-bottom: 2rem;
 }

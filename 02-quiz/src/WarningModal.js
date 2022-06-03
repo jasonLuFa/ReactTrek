@@ -4,14 +4,7 @@ import { useGlobalContext } from './context';
 
 const WarningModal = () => {
   const [isShowWarningModal, setIsShowWarningModal] = useState(true);
-  const {
-    setIsOpenWarningModal,
-    setIsShowAnswer,
-    reviewQuizzes,
-    setReviewQuizzes,
-    selectedAnswer,
-    questionIndex,
-  } = useGlobalContext();
+  const { setIsOpenWarningModal, setIsShowAnswer } = useGlobalContext();
 
   const handleCancel = () => {
     setIsOpenWarningModal(false);
@@ -20,9 +13,6 @@ const WarningModal = () => {
   const handleSure = () => {
     setIsOpenWarningModal(false);
     setIsShowAnswer(true);
-    const newReviewQuizzes = reviewQuizzes.slice(0, -1);
-    const updatedReview = { ...reviewQuizzes[questionIndex], selectedAnswer };
-    setReviewQuizzes([...newReviewQuizzes, updatedReview]);
   };
 
   useEffect(() => {
