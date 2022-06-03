@@ -29,10 +29,15 @@ https://user-images.githubusercontent.com/52907691/171797604-6779a7b8-857b-406c-
         
         return <AppContext.Provider value={{state1,setState1,function1}}>{children}<AppContext.Provider>
       };
+      
+      export { AppContext, AppProvider };
       ```
   + In `index.js`
     - Surround parent component with `<AppProvider></AppProvider>`
        ```javascript
+       import ReactDOM from 'react-dom/client';
+       import { AppProvider } from './context';
+       
        const root = ReactDOM.createRoot(document.getElementById('root'));
        root.render(
          <React.StrictMode>
@@ -42,12 +47,18 @@ https://user-images.githubusercontent.com/52907691/171797604-6779a7b8-857b-406c-
          </React.StrictMode>
        );
        ```
-  + In children component
+  + In children component ( ex : App.js )
     - import those state or function setted up in context.js with `useContext();`
       ```javascript
+      import { useGlobalContext } from './context';
       import { useContext } from 'react';
       
-      const {state1,setState1,funcion1} = useContext(AppContext);
+      function App() {
+        const {state1,setState1,funcion1} = useContext(AppContext);
+        ...
+      }
+      
+      export default App;
       ```
 #### Popular React Package
   * [`Axios`](https://axios-http.com/) ( Just use simple get request in this project )
