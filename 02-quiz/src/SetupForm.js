@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './css/SetupForm.css';
 import { useGlobalContext } from './context';
 import { AiFillWarning } from 'react-icons/ai';

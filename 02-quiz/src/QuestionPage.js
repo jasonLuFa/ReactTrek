@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { useGlobalContext } from './context';
 import WarningModal from './WarningModal';
 

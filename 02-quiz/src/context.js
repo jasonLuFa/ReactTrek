@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState, useContext, useEffect, createContext } from 'react';
+import { useState, useContext, createContext } from 'react';
 
 const table = {
   sport: 21,
@@ -75,8 +75,6 @@ const AppProvider = ({ children }) => {
     const { question, correctAnswer, answers } = questions[questionsIndex];
     return { question, correctAnswer, answers };
   };
-
-  useEffect(() => {}, []);
 
   return (
     <AppContext.Provider
