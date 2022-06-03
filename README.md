@@ -4,11 +4,11 @@
 ## Setup React Environment
 - chrome extension : [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
 - quick start React enviroment by [create-react-app](https://github.com/facebook/create-react-app)
-  - *package.json* : 最重要的檔案，定義了這個專案所需要的各種模組及配置資訊(包括 React 會用到的套件)，如刪掉 node_module 也可以下 `npm install` 將所需的模組安裝回來
-  - *index.html* : 這邊不會寫任何 html，而是藉由 component 生成 
-  - *index.js* : 將 component 渲染到 index.html 的地方 <br/>
-  - *App.js* : 範例 component 名稱
-  - *App.test.js* : 用來測試 App.js 的測試程式，測試程式都為 .test.js 為後綴的程式為測試程式
+  - *package.json* : Most important files defined the needed module or package of project. if you delete the mode_module, you still reinstall it back through `npm install` command.
+  - *index.html* : There is not too much html. Most of the html is gernerated by component. 
+  - *index.js* : The file renders component to index.html. <br/>
+  - *App.js* : example of component. 
+  - *App.test.js* : Testing code of App.js. ( Note: Files with `.test.js` suffix.)
   
   <div align="center">
     <img src="./image/create-react-app-init.png" >
