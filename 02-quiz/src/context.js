@@ -2,17 +2,19 @@ import axios from 'axios';
 import { useState, useContext, useEffect, createContext } from 'react';
 
 const table = {
-  sports: 21,
+  sport: 21,
   history: 23,
   politics: 24,
 };
 const tempUrl =
   'https://opentdb.com/api.php?amount=2&category=21&difficulty=easy&type=multiple';
+const API_ENDPOINT = 'https://opentdb.com/api.php?';
+
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
-  const [isWaiting, setIsWaiting] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isWaiting, setIsWaiting] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [correctCount, setCorrectCount] = useState(0);
@@ -28,6 +30,8 @@ const AppProvider = ({ children }) => {
   const [isOpenReviews, setIsOpenReviews] = useState(false);
 
   const fetchQuestions = async (url) => {
+    console.log(url);
+    setIsWaiting(false);
     setIsLoading(true);
     const response = await axios(url).catch((err) => console.log(err));
     if (!response) {
@@ -37,19 +41,20 @@ const AppProvider = ({ children }) => {
     const data = response.data.results;
     if (data.length <= 0) {
       setIsWaiting(true);
-
       return;
     }
     console.log(data);
     setQuestions(data);
-
     setIsWaiting(false);
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    fetchQuestions(tempUrl);
-  }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { amount, category, difficulty } = quiz;
+    const url = `${API_ENDPOINT}amount=${amount}&difficulty=${difficulty}&category=${table[category]}&type=multiple`;
+    fetchQuestions(url);
+  };
 
   const getQuestion = (questions, index) => {
     const {
@@ -64,6 +69,7 @@ const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
+        handleSubmit,
         isWaiting,
         setIsWaiting,
         isLoading,
@@ -73,6 +79,7 @@ const AppProvider = ({ children }) => {
         getQuestion,
         setQuestions,
         quiz,
+        setQuiz,
         isOpenWarningModal,
         setIsOpenWarningModal,
         selectedAnswer,

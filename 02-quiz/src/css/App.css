@@ -75,7 +75,8 @@ Quiz
   background-color: var(--clr-primary-5) !important;
   color: var(--clr-white);
 }
-.next-btn {
+.next-btn,
+.submit-btn {
   padding: 0.25rem 0.5rem;
   width: 35%;
   margin-left: auto;
