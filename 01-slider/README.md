@@ -1,14 +1,13 @@
-# Slider Project Introduce
-##  Purpose
+# :triangular_flag_on_post: Purpose
   * accomplish the Review Slider when screen is smaller than 1080px
   * Slider will automatelly change slide every 4 seconds 
-  * [Demo](https://01-slider.netlify.app/)
+  * [Demo Project](https://01-slider.netlify.app/)
 
 https://user-images.githubusercontent.com/52907691/169970175-ceb1dc6f-1710-4e11-b9d1-eb6f39cb57e3.mp4
 
 
 
-## Note
+# :memo: Note 
 #### React Hook
   >  `useState()` : a hook that allows you to have state variables in functional components
 
