@@ -1,5 +1,5 @@
 import './css/App.css';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import Photo from './Photo';
 import axios from 'axios';
