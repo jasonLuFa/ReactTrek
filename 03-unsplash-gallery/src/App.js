@@ -27,7 +27,7 @@ function App() {
     const url = query
       ? `${searchUrl}${clientID}${urlPage}${urlQuery}`
       : `${mainUrl}${clientID}${urlPage}`;
-    console.log(url);
+
     const response = await axios(url).catch((err) => {
       console.log(err);
     });
