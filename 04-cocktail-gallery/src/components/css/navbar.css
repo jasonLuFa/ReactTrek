@@ -8,12 +8,20 @@ nav {
   justify-content: space-between;
   padding: 1rem;
 }
+.logo {
+  width: 120px;
+}
 .nav-toggle {
   font-size: 1.5rem;
   color: var(--clr-green-dark);
   background: transparent;
   border-color: transparent;
   cursor: pointer;
+}
+.nav-links-container {
+  height: 0;
+  overflow: hidden;
+  transition: var(--transition);
 }
 .nav-links {
   list-style: none;
@@ -33,10 +41,14 @@ nav {
   color: white;
   background-color: var(--clr-green-dark);
 }
+.social-icons-container {
+  height: 0;
+  overflow: hidden;
+  transition: var(--transition);
+}
 .social-icons {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
 }
 .social-icon {
   flex: 0 0 calc(5rem - 1rem);
@@ -48,6 +60,9 @@ nav {
 }
 
 @media screen and (min-width: 768px) {
+  .logo {
+    width: 100%;
+  }
   .nav-toggle {
     display: none;
   }
@@ -55,16 +70,21 @@ nav {
     display: flex;
     justify-content: space-around;
   }
-  .links-container {
-    display: flex;
-    align-items: center;
-  }
   .nav-links {
     display: flex;
     align-items: center;
     justify-content: center;
   }
+  .social-icons {
+    width: 8rem;
+  }
   .social-icon {
-    flex: 0 0 calc(3rem - 1rem);
+    flex: 0 0 3rem;
+  }
+  .nav-links-container,
+  .social-icons-container {
+    display: flex;
+    align-self: center;
+    height: auto !important;
   }
 }
