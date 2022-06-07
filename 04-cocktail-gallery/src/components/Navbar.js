@@ -1,38 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import logo from '../logo.svg';
-import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
-
-const links = [
-  {
-    id: 1,
-    url: '/',
-    text: 'home',
-  },
-  {
-    id: 2,
-    url: '/about',
-    text: 'about',
-  },
-];
-
-const social = [
-  {
-    id: 1,
-    url: 'https://www.twitter.com',
-    icon: <FaFacebook />,
-  },
-  {
-    id: 2,
-    url: 'https://www.twitter.com',
-    icon: <FaTwitter />,
-  },
-  {
-    id: 4,
-    url: 'https://www.instagram.com/',
-    icon: <FaInstagram />,
-  },
-];
+import { FaBars } from 'react-icons/fa';
+import logo from './data/logo.svg';
+import { links, social } from './data/navbarData';
+import './css/navbar.css';
 
 const Navbar = () => {
   return (
@@ -42,7 +13,9 @@ const Navbar = () => {
           <NavLink to='/'>
             <img src={logo} alt='logo' className='logo' />
           </NavLink>
-          <button className='nav-toggle'></button>
+          <button className='nav-toggle'>
+            <FaBars />
+          </button>
         </div>
         <div className='links-container'>
           <ui className='nav-links'>
@@ -50,7 +23,9 @@ const Navbar = () => {
               const { id, url, text } = link;
               return (
                 <li key={id}>
-                  <NavLink to={url}>{text}</NavLink>
+                  <NavLink to={url} className='nav-link'>
+                    {text}
+                  </NavLink>
                 </li>
               );
             })}
@@ -60,7 +35,7 @@ const Navbar = () => {
           {social.map((socialIcon) => {
             const { id, url, icon } = socialIcon;
             return (
-              <li key={id}>
+              <li key={id} className='social-icon'>
                 <a href={url}>{icon}</a>
               </li>
             );
