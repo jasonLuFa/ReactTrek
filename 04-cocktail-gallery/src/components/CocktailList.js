@@ -14,7 +14,7 @@ const CocktailList = () => {
     );
   }
 
-  if (cocktails.length < 1) {
+  if (cocktails.length === 0) {
     return (
       <h2 className='section-title warning'>
         no cocktails matched your search criteria

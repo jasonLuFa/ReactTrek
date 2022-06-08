@@ -18,6 +18,7 @@ const AppProvider = ({ children }) => {
         const drinks = response.data.drinks;
         if (!drinks) {
           setCocktails([]);
+          setIsLoading(false);
           return;
         }
         const cocktails = drinks.map((drink) => {
@@ -30,7 +31,6 @@ const AppProvider = ({ children }) => {
           } = drink;
           return { id, name, image, info, glass };
         });
-        console.log(cocktails);
         setCocktails(cocktails);
         setIsLoading(false);
       } catch (error) {

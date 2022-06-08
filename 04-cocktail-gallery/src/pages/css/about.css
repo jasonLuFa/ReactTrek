@@ -1,0 +1,15 @@
+.about-section {
+  width: var(--smallWidth);
+  max-width: var(--maxWidth);
+  margin: 5rem auto;
+  background-color: #fff;
+  padding: 2rem;
+}
+.about-section .section-title {
+  margin-top: 0;
+}
+.about-section p {
+  line-height: 2rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
