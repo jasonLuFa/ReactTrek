@@ -67,7 +67,7 @@ const SingleCocktail = () => {
   if (isLoading) {
     return (
       <div className='loading'>
-        <DotSpinner />
+        <DotSpinner size={60} speed={0.9} color='#476a2e' />
       </div>
     );
   }
