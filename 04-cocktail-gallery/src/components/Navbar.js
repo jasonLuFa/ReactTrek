@@ -18,10 +18,8 @@ const Navbar = () => {
 
   useEffect(() => {
     const navLinksHeight = navLinksRef.current.getBoundingClientRect().height;
-    console.log(navLinksHeight);
     const socialIconsHeight =
       socialIconsRef.current.getBoundingClientRect().height;
-    console.log(socialIconsHeight);
     if (isShowLinks) {
       linksContainerRef.current.style.height = `${navLinksHeight}px`;
       socialIconsContainerRef.current.style.height = `${socialIconsHeight}px`;

@@ -1,6 +1,6 @@
 nav {
-  background: var(--clr-grey-8);
-  box-shadow: var(--light-shadow);
+  background: var(--darkGrey);
+  box-shadow: var(--lightShadow);
 }
 .nav-header {
   display: flex;
@@ -21,30 +21,30 @@ nav {
 .nav-links-container {
   height: 0;
   overflow: hidden;
-  transition: var(--transition);
+  transition: var(--mainTransition);
 }
 .nav-links {
   list-style: none;
   text-align: center;
 }
 .nav-link {
-  color: var(--clr-green-dark);
+  color: var(--primaryColor);
   font-size: 1rem;
   font-weight: bolder;
   text-transform: capitalize;
-  letter-spacing: var(--spacing);
+  letter-spacing: var(--mainSpacing);
   display: block;
   padding: 0.5rem 1rem;
-  transition: var(--transition);
+  transition: var(--mainTransition);
 }
 .nav-link:hover {
   color: white;
-  background-color: var(--clr-green-dark);
+  background-color: var(--primaryColor);
 }
 .social-icons-container {
   height: 0;
   overflow: hidden;
-  transition: var(--transition);
+  transition: var(--mainTransition);
 }
 .social-icons {
   display: flex;
