@@ -42,7 +42,7 @@
 [1]: https://github.com/jasonLuFa/ReactTrek/tree/main/01-slider
 [2]: https://github.com/jasonLuFa/ReactTrek/tree/main/02-quiz
 [3]: https://github.com/jasonLuFa/ReactTrek/tree/main/03-unsplash-gallery
-[4]: https://github.com/jasonLuFa/ReactTrek
+[4]: https://github.com/jasonLuFa/ReactTrek/tree/main/04-cocktail-gallery
 [5]: https://github.com/jasonLuFa/ReactTrek
 [6]: https://github.com/jasonLuFa/ReactTrek
 
