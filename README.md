@@ -25,13 +25,19 @@
  + Hooks Invoke inside function/component body
  + Don't call hooks conditonally ( ex: write useEffect in if statement) 
 
-## Project list
+## Peek Project 
+| | | |
+|:-------------------------:|:-------------------------:|:-------------------------:|
+|  |  |  |
+|  |  |  |
+
+## Project list ( deep into what technology I use )
 1. [Slider][1]
 2. [Quiz][2]
 3. [Unsplash Gallery][3]
 4. [Cocktail Gallery][4]
-5. [To List][5]
-6. [Weather Observation][6]
+5. [Todo List][5]
+6. [Todo List 2.0 ( with pomodoro )][6]
 
 [1]: https://github.com/jasonLuFa/ReactTrek/tree/main/01-slider
 [2]: https://github.com/jasonLuFa/ReactTrek/tree/main/02-quiz
