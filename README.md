@@ -43,6 +43,6 @@
 [2]: https://github.com/jasonLuFa/ReactTrek/tree/main/02-quiz
 [3]: https://github.com/jasonLuFa/ReactTrek/tree/main/03-unsplash-gallery
 [4]: https://github.com/jasonLuFa/ReactTrek/tree/main/04-cocktail-gallery
-[5]: https://github.com/jasonLuFa/ReactTrek
-[6]: https://github.com/jasonLuFa/ReactTrek
+[5]: https://github.com/jasonLuFa/ReactTrek/tree/main/05-todo-list
+[6]: https://github.com/jasonLuFa/ReactTrek/tree/main/06-todo-list-with-pomodoro
 
