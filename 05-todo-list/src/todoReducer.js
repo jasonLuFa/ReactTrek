@@ -1,0 +1,185 @@
+import { getLocalStorage, setLocalStorage } from "./utils";
+
+const DEFAULT_TOMATO_AMOUNT = 3;
+const MAX_TOMATO_AMOUNT = 5;
+const MIN_TOMATO_AMOUNT = 0;
+
+export const todoReducer = (state, action) => {
+  const { type, payload } = action;
+  const { items, buttonStatus, isEdited, editID } = state;
+
+  const alertDanger = (message) => {
+    return { isShow: true, message, type: "alert-danger" };
+  };
+
+  const alertSucccess = (message) => {
+    return { isShow: true, message, type: "alert-success" };
+  };
+
+  const emptyInputAlert = () => {
+    console.log(state);
+    return {
+      ...state,
+      alert: alertDanger("please enter value"),
+    };
+  };
+
+  const isNameDuplicate = (input) => {
+    return items.filter((item) => item.name === input).length > 0;
+  };
+
+  const handleNameDuplicate = (input) => {
+    return {
+      ...state,
+      alert: alertDanger("name duplicate"),
+    };
+  };
+
+  const handleEdit = (input) => {
+    const newItems = items.map((item) =>
+      item.id === editID ? { ...item, name: input } : item
+    );
+    setLocalStorage(newItems);
+    return {
+      ...state,
+      items: newItems,
+      isEdited: false,
+      buttonStatus: { isDisabledDelete: false, isDisabledClear: false },
+      alert: alertSucccess("finished edite"),
+    };
+  };
+
+  const handleAdd = (input) => {
+    const newItems = [
+      ...items,
+      {
+        id: new Date().getTime().toString(),
+        name: input,
+        pomodoros: {
+          amount: DEFAULT_TOMATO_AMOUNT,
+          unfinished: DEFAULT_TOMATO_AMOUNT,
+        },
+      },
+    ];
+    setLocalStorage(newItems);
+    return {
+      ...state,
+      items: newItems,
+      buttonStatus: { ...buttonStatus, isDisabledClear: false },
+      alert: alertSucccess("add item"),
+    };
+  };
+
+  switch (type) {
+    case ACTIONS.SUBMIT_ITEM:
+      if (!payload.input) {
+        return emptyInputAlert();
+      }
+      if (isNameDuplicate(payload.input)) {
+        return handleNameDuplicate();
+      }
+      if (isEdited) {
+        return handleEdit(payload.input);
+      }
+      return handleAdd(payload.input);
+
+    case ACTIONS.EDIT_ITEM:
+      console.log(payload.targetID);
+      return {
+        ...state,
+        editID: payload.targetID,
+        buttonStatus: { isDisabledClear: true, isDisabledDelete: true },
+        isEdited: true,
+      };
+
+    case ACTIONS.DELETE_ITEM:
+      const newItems = items.filter((item) => item.id !== payload.targetID);
+      setLocalStorage(newItems);
+      return {
+        ...state,
+        items: newItems,
+        buttonStatus: newItems.length === 0 && {
+          ...buttonStatus,
+          isDisabledClear: true,
+        },
+      };
+
+    case ACTIONS.CANCEL_EDIT_ITEM:
+      return (
+        editID === payload.targetID && {
+          ...state,
+          buttonStatus: { isDisabledClear: false, isDisabledDelete: false },
+          isEdited: false,
+        }
+      );
+
+    case ACTIONS.CLEAR_ITEMS:
+      setLocalStorage([]);
+      return {
+        ...state,
+        items: [],
+        buttonStatus: {
+          ...buttonStatus,
+          isDisabledClear: true,
+        },
+        alert: alertDanger("clear item"),
+      };
+
+    case ACTIONS.CLOSE_ALERT:
+      return { ...state, alert: { ...alert, isShow: false } };
+
+    case ACTIONS.INCREASE_POMODORO:
+      const increasePomodoroItems = items.map((item) => {
+        const pomodoroAmount = item.pomodoros.amount;
+        if (
+          item.id === payload.targetID &&
+          pomodoroAmount < MAX_TOMATO_AMOUNT
+        ) {
+          return {
+            ...item,
+            pomodoros: {
+              amount: pomodoroAmount + 1,
+              unfinished: pomodoroAmount + 1,
+            },
+          };
+        }
+        return item;
+      });
+      setLocalStorage(increasePomodoroItems);
+      return { ...state, items: increasePomodoroItems };
+
+    case ACTIONS.DECREASE_POMODORO:
+      const decreasePomodoroItems = items.map((item) => {
+        const pomodoroAmount = item.pomodoros.amount;
+        if (
+          item.id === payload.targetID &&
+          pomodoroAmount > MIN_TOMATO_AMOUNT
+        ) {
+          return {
+            ...item,
+            pomodoros: {
+              amount: pomodoroAmount - 1,
+              unfinished: pomodoroAmount - 1,
+            },
+          };
+        }
+        return item;
+      });
+      setLocalStorage(decreasePomodoroItems);
+      return { ...state, items: decreasePomodoroItems };
+
+    default:
+      throw new Error("There is no find matched action");
+  }
+};
+
+export const ACTIONS = {
+  SUBMIT_ITEM: "submit_item",
+  CLEAR_ITEMS: "clear_items",
+  EDIT_ITEM: "edit_item",
+  DELETE_ITEM: "delete_item",
+  CANCEL_EDIT_ITEM: "cancel_edit_item",
+  CLOSE_ALERT: "close_alert",
+  INCREASE_POMODORO: "increase_pomodoro",
+  DECREASE_POMODORO: "decrease_pomodoro",
+};

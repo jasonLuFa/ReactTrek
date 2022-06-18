@@ -220,6 +220,20 @@ button
 .clear-btn:hover {
   color: var(--clr-red-dark);
 }
+
+.amount-btn {
+  width: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.amount-btn svg {
+  fill: var(--clr-primary-4);
+}
+.amount-btn:hover svg {
+  fill: var(--clr-primary-6);
+}
+
 /*
 =============== 
 To do List
@@ -280,12 +294,24 @@ To do List
 .todo-list-contaienr {
   margin-top: 2rem;
 }
-
+.todo-item-container {
+  display: grid;
+  grid-template-columns: 1.5rem auto;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    'counter item'
+    'counter tomato';
+}
+.amount-btn-container {
+  grid-area: counter;
+  display: flex;
+  flex-direction: column;
+}
 .todo-item {
+  grid-area: item;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
   transition: var(--transition);
   padding: 0.25rem 1rem;
   border-radius: var(--radius);
@@ -303,11 +329,24 @@ To do List
 .todo-item:hover .title {
   color: var(--clr-grey-5);
 }
+
+.tomatoes {
+  grid-area: tomato;
+  display: flex;
+  gap: 0.2rem;
+  /* margin-bottom: 0.5rem; */
+  padding: 0.25rem 1rem;
+}
 .title {
   margin-bottom: 0;
   color: var(--clr-grey-1);
   letter-spacing: 2px;
   transition: var(--transition);
+}
+
+p.amount {
+  margin-bottom: 0;
+  text-align: center;
 }
 /*
 =============== 
