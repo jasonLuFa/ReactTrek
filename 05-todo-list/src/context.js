@@ -1,6 +1,7 @@
 import React, { useState, useContext, useReducer, useRef } from "react";
 import { getLocalStorage } from "./utils";
 import { todoReducer } from "./todoReducer";
+import { pomodoroReducer } from "./pomodoroReducer";
 
 const AppContext = React.createContext();
 
@@ -19,11 +20,33 @@ const AppProvider = ({ children }) => {
     isEdited: false,
     editID: "",
   });
-
+  const [pomodoro, pomodoroDispatch] = useReducer(pomodoroReducer, {
+    isShowPomodoroSettings: false,
+    isOpenPomodoro: false,
+    targetItemID: "",
+    settingInfo: {
+      workMinutes: 45,
+      breakMinutes: 15,
+    },
+  });
   const [input, setInput] = useState("");
   const inputRef = useRef();
+  const [isOpenWarningModal, setIsOpenWarningModal] = useState(false);
+
   return (
-    <AppContext.Provider value={{ todos, inputRef, input, setInput, dispatch }}>
+    <AppContext.Provider
+      value={{
+        todos,
+        inputRef,
+        input,
+        setInput,
+        dispatch,
+        isOpenWarningModal,
+        setIsOpenWarningModal,
+        pomodoro,
+        pomodoroDispatch,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

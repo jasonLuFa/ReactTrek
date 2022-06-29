@@ -2,7 +2,7 @@ import { getLocalStorage, setLocalStorage } from "./utils";
 
 const DEFAULT_TOMATO_AMOUNT = 3;
 const MAX_TOMATO_AMOUNT = 5;
-const MIN_TOMATO_AMOUNT = 0;
+const MIN_TOMATO_AMOUNT = 1;
 
 export const todoReducer = (state, action) => {
   const { type, payload } = action;
@@ -17,7 +17,6 @@ export const todoReducer = (state, action) => {
   };
 
   const emptyInputAlert = () => {
-    console.log(state);
     return {
       ...state,
       alert: alertDanger("please enter value"),
@@ -56,8 +55,8 @@ export const todoReducer = (state, action) => {
         id: new Date().getTime().toString(),
         name: input,
         pomodoros: {
-          amount: DEFAULT_TOMATO_AMOUNT,
-          unfinished: DEFAULT_TOMATO_AMOUNT,
+          totalAmount: DEFAULT_TOMATO_AMOUNT,
+          unfinishedAmount: DEFAULT_TOMATO_AMOUNT,
         },
       },
     ];
@@ -84,7 +83,6 @@ export const todoReducer = (state, action) => {
       return handleAdd(payload.input);
 
     case ACTIONS.EDIT_ITEM:
-      console.log(payload.targetID);
       return {
         ...state,
         editID: payload.targetID,
@@ -130,16 +128,17 @@ export const todoReducer = (state, action) => {
 
     case ACTIONS.INCREASE_POMODORO:
       const increasePomodoroItems = items.map((item) => {
-        const pomodoroAmount = item.pomodoros.amount;
+        const pomodoroTotalAmount = item.pomodoros.totalAmount;
+        const pomodoroUnfinishedAmount = item.pomodoros.unfinishedAmount;
         if (
           item.id === payload.targetID &&
-          pomodoroAmount < MAX_TOMATO_AMOUNT
+          pomodoroTotalAmount < MAX_TOMATO_AMOUNT
         ) {
           return {
             ...item,
             pomodoros: {
-              amount: pomodoroAmount + 1,
-              unfinished: pomodoroAmount + 1,
+              totalAmount: pomodoroTotalAmount + 1,
+              unfinishedAmount: pomodoroUnfinishedAmount + 1,
             },
           };
         }
@@ -150,16 +149,17 @@ export const todoReducer = (state, action) => {
 
     case ACTIONS.DECREASE_POMODORO:
       const decreasePomodoroItems = items.map((item) => {
-        const pomodoroAmount = item.pomodoros.amount;
+        const pomodoroTotalAmount = item.pomodoros.totalAmount;
+        const pomodoroUnfinishedAmount = item.pomodoros.unfinishedAmount;
         if (
           item.id === payload.targetID &&
-          pomodoroAmount > MIN_TOMATO_AMOUNT
+          pomodoroTotalAmount > MIN_TOMATO_AMOUNT
         ) {
           return {
             ...item,
             pomodoros: {
-              amount: pomodoroAmount - 1,
-              unfinished: pomodoroAmount - 1,
+              totalAmount: pomodoroTotalAmount - 1,
+              unfinishedAmount: pomodoroUnfinishedAmount - 1,
             },
           };
         }

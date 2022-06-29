@@ -8,14 +8,37 @@ import EditButton from "./EditButton";
 import CancelButton from "./CancelButton";
 
 const TodoItem = ({ item }) => {
-  const { todos } = useGlobalContext();
-  const { isEdited, editID } = todos;
+  const {
+    todos: { isEdited, editID },
+    setIsOpenWarningModal,
+  } = useGlobalContext();
   const { id, name, pomodoros } = item;
 
-  const displayTomatoes = () => {
-    const row = [];
-    for (let index = 0; index < pomodoros.amount; index++) {
-      row.push(
+  const displayFinishedPomodoros = () => {
+    const pomodors = [];
+    for (
+      let index = 0;
+      index < pomodoros.totalAmount - pomodoros.unfinishedAmount;
+      index++
+    ) {
+      pomodors.push(
+        <GiTomato
+          key={index}
+          style={{
+            color: "rgb(137, 126, 126)",
+            fontSize: "1.2rem",
+            cursor: "not-allowed",
+          }}
+        />
+      );
+    }
+    return pomodors;
+  };
+
+  const displayUnfinishedPomodoros = () => {
+    const pomodors = [];
+    for (let index = 0; index < pomodoros.unfinishedAmount; index++) {
+      pomodors.push(
         <GiTomato
           key={index}
           style={{
@@ -23,18 +46,17 @@ const TodoItem = ({ item }) => {
             fontSize: "1.2rem",
             cursor: "pointer",
           }}
+          onClick={() => setIsOpenWarningModal(true)}
         />
       );
     }
-    return row;
+    return pomodors;
   };
-
   return (
     <div className='todo-list-contaienr'>
       <div key={id} className='todo-item-container'>
         <div className='amount-btn-container'>
           <IncreaseButton id={id} />
-          <p className='amount'>{pomodoros.amount}</p>
           <DecreaseButton id={id} />
         </div>
         <div
@@ -50,15 +72,8 @@ const TodoItem = ({ item }) => {
           </div>
         </div>
         <div className='tomatoes'>
-          {displayTomatoes()}
-          {/*
-          <GiTomato
-            style={{
-              color: "grey",
-              fontSize: "1.2rem",
-              cursor: "not-allowed",
-            }}
-          /> */}
+          {displayUnfinishedPomodoros()}
+          {displayFinishedPomodoros()}
         </div>
       </div>
     </div>
