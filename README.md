@@ -35,8 +35,7 @@
 2. [Quiz][2]
 3. [Unsplash Gallery][3]
 4. [Cocktail Gallery][4]
-5. [Todo List][5]
-6. [Todo List 2.0 ( with pomodoro )][6]
+5. [Todo List( )][5]
 
 [1]: https://github.com/jasonLuFa/ReactTrek/tree/main/01-slider
 [2]: https://github.com/jasonLuFa/ReactTrek/tree/main/02-quiz
