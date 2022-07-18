@@ -17,7 +17,6 @@
 ## Project Purpose
 - Be familiar with React Hook by practicing mini project
 - Some project will also use popluar React packages, tools like `React Router6`, `Axios`, `Redux and so on.
-- Learning Testing by my partial finished project.
 
 ## Some Rule of Hooks and components
  + Component must be uppercase of first letter
@@ -36,13 +35,11 @@
 2. [Quiz][2]
 3. [Unsplash Gallery][3]
 4. [Cocktail Gallery][4]
-5. [Todo List][5]
-6. [Todo List 2.0 ( with pomodoro )][6]
+5. [Todo List(with pomodoro)][5]
 
 [1]: https://github.com/jasonLuFa/ReactTrek/tree/main/01-slider
 [2]: https://github.com/jasonLuFa/ReactTrek/tree/main/02-quiz
 [3]: https://github.com/jasonLuFa/ReactTrek/tree/main/03-unsplash-gallery
 [4]: https://github.com/jasonLuFa/ReactTrek/tree/main/04-cocktail-gallery
 [5]: https://github.com/jasonLuFa/ReactTrek/tree/main/05-todo-list
-[6]: https://github.com/jasonLuFa/ReactTrek/tree/main/06-todo-list-with-pomodoro
 
