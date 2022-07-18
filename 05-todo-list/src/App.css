@@ -244,7 +244,14 @@ button
 .amount-btn:hover svg {
   fill: var(--clr-primary-6);
 }
-
+.pomodoro-btn-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
 .play-btn,
 .pause-btn,
 .stop-btn {
@@ -253,6 +260,28 @@ button
   border: 0;
   width: 6rem;
   cursor: pointer;
+}
+.break-btn {
+  background-color: var(--clr-black);
+  border-radius: 50%;
+  color: var(--clr-white);
+  border: 0;
+  width: 5rem;
+  height: 5rem;
+  font-size: 3rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+@media screen and (max-width: 360px) {
+  .play-btn,
+  .pause-btn,
+  .stop-btn {
+    width: 3rem;
+  }
+  .break-btn {
+    width: 3rem;
+    font-size: 2.5rem;
+  }
 }
 .setting-btn,
 .back-btn {
@@ -456,7 +485,7 @@ Modal
 }
 .modal-content {
   display: flex;
-  width: 55vw;
+  width: 65vw;
   flex-direction: column;
   align-items: center;
   padding: 3rem;
@@ -464,7 +493,7 @@ Modal
   background: var(--clr-white);
   text-align: center;
 }
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 360px) {
   .modal-content {
     width: 90vw;
   }
@@ -484,7 +513,6 @@ Modal
   color: var(--clr-red-dark);
   letter-spacing: var(--spacing);
   flex: 0 0 45%;
-  padding: 0 2rem;
   font-size: 1.2rem;
 }
 .modal-content .cancel-btn:hover {
@@ -497,18 +525,17 @@ Modal
   letter-spacing: var(--spacing);
   flex: 0 0 45%;
   font-size: 1.2rem;
-  padding: 0 2rem;
 }
 .modal-content .sure-btn:hover {
   background-color: var(--clr-green-dark);
   color: var(--clr-green-light);
 }
-@media screen and (max-width: 450px) {
+/* @media screen and (max-width: 576px) {
   .modal-content .sure-btn,
   .modal-content .cancel-btn {
     flex: 0 0 100%;
   }
-}
+} */
 .modal-content h4 {
   margin-bottom: 2rem;
 }

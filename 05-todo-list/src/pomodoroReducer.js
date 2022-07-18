@@ -23,12 +23,29 @@ export const pomodoroReducer = (state, action) => {
       };
 
     case POMODORO_ACTIONS.CHANGE_BREAK_MINUTES:
-      console.log(payload.newBreakMinutes);
       return {
         ...state,
         settingInfo: {
           ...state.settingInfo,
           breakMinutes: payload.newBreakMinutes,
+        },
+      };
+
+    case POMODORO_ACTIONS.PAUSE_POMODORO:
+      return {
+        ...state,
+        pomodoroInfo: {
+          ...state.pomodoroInfo,
+          isPause: true,
+        },
+      };
+
+    case POMODORO_ACTIONS.START_POMODORO:
+      return {
+        ...state,
+        pomodoroInfo: {
+          ...state.pomodoroInfo,
+          isPause: false,
         },
       };
 
@@ -44,4 +61,6 @@ export const POMODORO_ACTIONS = {
   CLOSE_POMODORO: "close_pomodoro",
   CHANGE_WORK_MINUTES: "change_work_minutes",
   CHANGE_BREAK_MINUTES: "change_break_minutes",
+  PAUSE_POMODORO: "pause_pomodoro",
+  START_POMODORO: "start_pomodoro",
 };
