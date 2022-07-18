@@ -36,16 +36,14 @@ const Timer = () => {
         return;
       }
       if (mode === "WORK") {
-        console.log(workSecondsLeft);
         setWorkSecondsLeft((prevSecondLeft) => prevSecondLeft - 1);
       }
       if (mode === "BREAK") {
-        console.log(breakSecondsLeft);
         setBreakSecondsLeft((prevSecondLeft) => prevSecondLeft - 1);
       }
     }, 100);
     return () => clearInterval(interval);
-  }, [settingInfo, isPause, workSecondsLeft]);
+  }, [settingInfo, isPause, mode]);
 
   const adjustText = () => {
     return (
@@ -107,7 +105,9 @@ const Timer = () => {
       </CircularProgressbarWithChildren>
       <div className="pomodoro-btn-container">
         {isPause ? <PlayButton /> : <PauseButton />}
-        {workSecondsLeft <= 0 && <BreakButton setMode={setMode} />}
+        {mode === "WORK" && workSecondsLeft <= 0 && (
+          <BreakButton setMode={setMode} />
+        )}
         <StopButton />
       </div>
     </div>
