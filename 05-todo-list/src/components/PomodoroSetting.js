@@ -13,7 +13,6 @@ const PomodoroSetting = () => {
     pomodoroDispatch,
   } = useGlobalContext();
 
-  console.log(breakMinutes);
   return (
     <div
       className={`${
@@ -22,7 +21,7 @@ const PomodoroSetting = () => {
     >
       <div className="modal-content">
         <h3>Pomodoro Setting</h3>
-        <label>work: {workMinutes}:00 min</label>
+        <label>work: {workMinutes} minutes</label>
         <ReactSlider
           className="slider-red"
           thumbClassName="thumb"
@@ -37,7 +36,7 @@ const PomodoroSetting = () => {
             })
           }
         />
-        <label>break : {breakMinutes}:00 min</label>
+        <label>break : {breakMinutes} minutes</label>
         <ReactSlider
           className="slider-green"
           thumbClassName="thumb"
