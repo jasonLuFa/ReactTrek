@@ -7,7 +7,7 @@ const BreakButton = ({ setMode, setIsAlarming }) => {
       className="break-btn"
       onClick={() => {
         setMode("BREAK");
-        setIsAlarming(false);
+        // setIsAlarming(false);
       }}
     >
       <FiCoffee
