@@ -169,6 +169,7 @@ export const todoReducer = (state, action) => {
       return { ...state, items: decreasePomodoroItems };
 
     case ACTIONS.CHANGE_POMODORO_AMOUNT_OF_ITEM:
+      console.log(items);
       const adjustPomodoroAmountOfItems = items.map((item) => {
         const { itemId: targetItemId, isFinished } = payload.pomodoroCycle;
         console.log("item.id", item.id);
@@ -177,6 +178,14 @@ export const todoReducer = (state, action) => {
         console.log(
           "item.id === targetItemId && isFinished",
           item.id === targetItemId && isFinished
+        );
+        console.log(
+          "item.pomodoros.unfinishedAmount",
+          item.pomodoros.unfinishedAmount
+        );
+        console.log(
+          "item.pomodoros.unfinishedAmount--",
+          item.pomodoros.unfinishedAmount--
         );
         if (item.id === targetItemId && isFinished) {
           return {
@@ -189,6 +198,7 @@ export const todoReducer = (state, action) => {
         }
         return item;
       });
+      console.log("adjustPomodoroAmountOfItems", adjustPomodoroAmountOfItems);
       setLocalStorage("item", adjustPomodoroAmountOfItems);
       return { ...state, items: adjustPomodoroAmountOfItems };
 
