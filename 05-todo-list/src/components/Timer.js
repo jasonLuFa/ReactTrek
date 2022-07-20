@@ -26,7 +26,7 @@ const Timer = () => {
     pomodoroCycle,
     setPomodoroCycle,
   } = useGlobalContext();
-  // const [isAlarming, setIsAlarming] = useState(false);
+  const [isAlarming, setIsAlarming] = useState(false);
   const [mode, setMode] = useState("WORK"); // WORK, BREAK
   const [workSecondsLeft, setWorkSecondsLeft] = useState(
     () => settingInfo.workMinutes * 60
@@ -89,22 +89,24 @@ const Timer = () => {
     }
   }, [workSecondsLeft, setPomodoroCycle, itemId]);
 
-  // useEffect(() => {
-  //   if (workSecondsLeft <= 0 && mode === "WORK") {
-  //     setIsAlarming(true);
-  //     return;
-  //   }
-  //   if (breakSecondsLeft <= 0) {
-  //     setIsAlarming(true);
-  //     return;
-  //   }
-  // }, [breakSecondsLeft, workSecondsLeft, mode]);
+  useEffect(() => {
+    if (workSecondsLeft <= 0 && mode === "WORK") {
+      setIsAlarming(true);
+      return;
+    }
+    if (breakSecondsLeft <= 0) {
+      setIsAlarming(true);
+      return;
+    }
+  }, [breakSecondsLeft, workSecondsLeft, mode]);
 
   return (
     <div>
-      {/* {isAlarming && (
-        <Sound url={alarmClock} playStatus={Sound.status.PLAYING} loop={true} />
-      )} */}
+      <Sound
+        url={alarmClock}
+        playStatus={isAlarming ? Sound.status.PLAYING : Sound.status.STOPPED}
+        loop={true}
+      />
       <CircularProgressbarWithChildren
         value={(workSecondsLeft / (settingInfo.workMinutes * 60)) * 100}
         text={adjustText()}
@@ -133,7 +135,7 @@ const Timer = () => {
       <div className="pomodoro-btn-container">
         {isPause ? <PlayButton /> : <PauseButton />}
         {mode === "WORK" && workSecondsLeft <= 0 && (
-          <BreakButton setMode={setMode} />
+          <BreakButton setMode={setMode} setIsAlarming={setIsAlarming} />
         )}
         <StopButton />
       </div>

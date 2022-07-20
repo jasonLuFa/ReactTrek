@@ -22,7 +22,11 @@ export const pomodoroReducer = (state, action) => {
       };
 
     case POMODORO_ACTIONS.CLOSE_POMODORO:
-      return { ...state, isOpenPomodoro: false };
+      return {
+        ...state,
+        pomodoroInfo: { isPause: true },
+        isOpenPomodoro: false,
+      };
 
     case POMODORO_ACTIONS.OPEN_POMODORO_SETTING:
       return { ...state, isShowPomodoroSettings: true };
