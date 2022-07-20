@@ -1,5 +1,5 @@
 import React from "react";
-import { FaEdit, FaTrash, FaRegTimesCircle } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
 import { useGlobalContext } from "../context";
 import { ACTIONS } from "../todoReducer";
 
@@ -13,7 +13,7 @@ const EditButton = ({ id }) => {
   };
 
   return (
-    <button type='button' className='edit-btn' onClick={() => handleEdit(id)}>
+    <button type="button" className="edit-btn" onClick={() => handleEdit(id)}>
       <FaEdit />
     </button>
   );

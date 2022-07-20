@@ -1,7 +1,9 @@
 import React from "react";
 import { FiCoffee } from "react-icons/fi";
+import { useGlobalContext } from "../context";
 
-const BreakButton = ({ setMode, setIsAlarming }) => {
+const BreakButton = ({ setMode }) => {
+  const { setIsAlarming } = useGlobalContext();
   return (
     <button
       className="break-btn"

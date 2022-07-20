@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import {
   CircularProgressbar,
   CircularProgressbarWithChildren,
@@ -11,9 +11,6 @@ import StopButton from "./StopButton";
 import BreakButton from "./BreakButton";
 import { useGlobalContext } from "../context";
 
-import Sound from "react-sound";
-import alarmClock from "../sound/alarm-clock.mp3";
-
 const red = "#f54e4e";
 const green = "#4aec8c";
 
@@ -25,8 +22,9 @@ const Timer = () => {
     },
     pomodoroCycle,
     setPomodoroCycle,
+    setIsAlarming,
   } = useGlobalContext();
-  const [isAlarming, setIsAlarming] = useState(false);
+  // const [isAlarming, setIsAlarming] = useState(false);
   const [mode, setMode] = useState("WORK"); // WORK, BREAK
   const [workSecondsLeft, setWorkSecondsLeft] = useState(
     () => settingInfo.workMinutes * 60
@@ -82,7 +80,6 @@ const Timer = () => {
   };
 
   const itemId = pomodoroCycle.itemId;
-
   useEffect(() => {
     if (workSecondsLeft <= 0) {
       setPomodoroCycle({ itemId, isFinished: true });
@@ -98,15 +95,15 @@ const Timer = () => {
       setIsAlarming(true);
       return;
     }
-  }, [breakSecondsLeft, workSecondsLeft, mode]);
+  }, [breakSecondsLeft, workSecondsLeft, mode, setIsAlarming]);
 
   return (
     <div>
-      <Sound
+      {/* <Sound
         url={alarmClock}
-        playStatus={isAlarming ? Sound.status.PLAYING : Sound.status.STOPPED}
+        playStatus={setIsAlarming ? Sound.status.PLAYING : Sound.status.STOPPED}
         loop={true}
-      />
+      /> */}
       <CircularProgressbarWithChildren
         value={(workSecondsLeft / (settingInfo.workMinutes * 60)) * 100}
         text={adjustText()}
@@ -135,7 +132,7 @@ const Timer = () => {
       <div className="pomodoro-btn-container">
         {isPause ? <PlayButton /> : <PauseButton />}
         {mode === "WORK" && workSecondsLeft <= 0 && (
-          <BreakButton setMode={setMode} setIsAlarming={setIsAlarming} />
+          <BreakButton setMode={setMode} />
         )}
         <StopButton />
       </div>

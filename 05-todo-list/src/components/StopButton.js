@@ -1,6 +1,5 @@
 import React from "react";
 import { useGlobalContext } from "../context";
-import { POMODORO_ACTIONS } from "../pomodoroReducer";
 
 const StopButton = () => {
   const { setIsOpenWarningModal } = useGlobalContext();

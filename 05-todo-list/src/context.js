@@ -2,6 +2,8 @@ import React, { useState, useContext, useReducer, useRef } from "react";
 import { getLocalStorage } from "./utils";
 import { todoReducer } from "./todoReducer";
 import { pomodoroReducer } from "./pomodoroReducer";
+import useAudio from "./customState/useAudio";
+import alarmClock from "./sound/alarm-clock.mp3";
 
 const AppContext = React.createContext();
 
@@ -18,7 +20,7 @@ const setupButtonStatus = (items) => {
 };
 
 const todoInitial = {
-  // {id ,name , pomodoros:{totalAmount, unfinishedAmount}}
+  // [{id ,name , pomodoros:{totalAmount, unfinishedAmount}},...]
   items: setupItems(),
   // { isDisabledClear, isDisabledDelete}
   buttonStatus: setupButtonStatus(setupItems()),
@@ -51,6 +53,7 @@ const AppProvider = ({ children }) => {
     itemId: "",
     isFinished: false,
   });
+  const [, setIsAlarming] = useAudio(alarmClock);
 
   return (
     <AppContext.Provider
@@ -66,6 +69,7 @@ const AppProvider = ({ children }) => {
         pomodoroDispatch,
         pomodoroCycle,
         setPomodoroCycle,
+        setIsAlarming,
       }}
     >
       {children}

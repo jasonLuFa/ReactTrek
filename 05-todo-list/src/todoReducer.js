@@ -177,7 +177,7 @@ export const todoReducer = (state, action) => {
             ...item,
             pomodoros: {
               ...item.pomodoros,
-              unfinishedAmount: --item.pomodoros.unfinishedAmount,
+              unfinishedAmount: item.pomodoros.unfinishedAmount - 1,
             },
           };
         }

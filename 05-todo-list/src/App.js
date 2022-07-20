@@ -21,12 +21,13 @@ function App() {
     dispatch,
     pomodoroCycle,
     setPomodoroCycle,
+    setIsAlarming,
   } = useGlobalContext();
 
   const closePomodoro = () => {
     pomodoroDispatch({ type: POMODORO_ACTIONS.CLOSE_POMODORO });
     setIsOpenWarningModal(false);
-    console.log(pomodoroCycle);
+    setIsAlarming(false);
     dispatch({
       type: ACTIONS.CHANGE_POMODORO_AMOUNT_OF_ITEM,
       payload: { pomodoroCycle },
