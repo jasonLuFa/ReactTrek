@@ -26,6 +26,7 @@ function App() {
   const closePomodoro = () => {
     pomodoroDispatch({ type: POMODORO_ACTIONS.CLOSE_POMODORO });
     setIsOpenWarningModal(false);
+    console.log(pomodoroCycle);
     dispatch({
       type: ACTIONS.CHANGE_POMODORO_AMOUNT_OF_ITEM,
       payload: { pomodoroCycle },

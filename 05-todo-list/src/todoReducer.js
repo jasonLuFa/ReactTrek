@@ -171,6 +171,13 @@ export const todoReducer = (state, action) => {
     case ACTIONS.CHANGE_POMODORO_AMOUNT_OF_ITEM:
       const adjustPomodoroAmountOfItems = items.map((item) => {
         const { itemId: targetItemId, isFinished } = payload.pomodoroCycle;
+        console.log("item.id", item.id);
+        console.log("targetItemId", targetItemId);
+        console.log("isFinished", isFinished);
+        console.log(
+          "item.id === targetItemId && isFinished",
+          item.id === targetItemId && isFinished
+        );
         if (item.id === targetItemId && isFinished) {
           return {
             ...item,
