@@ -20,6 +20,8 @@ const Timer = () => {
       settingInfo,
       pomodoroInfo: { isPause },
     },
+    pomodoroCycle,
+    setPomodoroCycle,
   } = useGlobalContext();
 
   const [mode, setMode] = useState("WORK"); // WORK, BREAK
@@ -75,6 +77,12 @@ const Timer = () => {
       return -seconds;
     }
   };
+
+  useEffect(() => {
+    if (workSecondsLeft <= 0) {
+      setPomodoroCycle({ ...pomodoroCycle, isFinished: true });
+    }
+  }, [workSecondsLeft, setPomodoroCycle, pomodoroCycle]);
 
   return (
     <div>

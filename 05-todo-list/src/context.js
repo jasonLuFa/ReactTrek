@@ -5,33 +5,52 @@ import { pomodoroReducer } from "./pomodoroReducer";
 
 const AppContext = React.createContext();
 
-const setupItems = () => getLocalStorage() ?? [];
+const setupItems = () => getLocalStorage("item") ?? [];
+const setupPomodoroSettingInfo = () =>
+  getLocalStorage("pomodoroSettingInfo") ?? {
+    workMinutes: 45,
+    breakMinutes: 15,
+  };
 
 const setupButtonStatus = (items) => {
   const isDisabledClear = items.length === 0 ? true : false;
   return { isDisabledClear, isDisabledDelete: false };
 };
 
+const todoInitial = {
+  // {id ,name , pomodoros:{totalAmount, unfinishedAmount}}
+  items: setupItems(),
+  // { isDisabledClear, isDisabledDelete}
+  buttonStatus: setupButtonStatus(setupItems()),
+  alert: { isShow: false, message: "", type: "" },
+  isEdited: false,
+  editID: "",
+};
+
+const pomodoroInitial = {
+  isShowPomodoroSettings: false,
+  isOpenPomodoro: false,
+  targetItemId: "",
+  settingInfo: setupPomodoroSettingInfo(),
+  pomodoroInfo: {
+    isPause: true,
+    isStop: true,
+  },
+};
+
 const AppProvider = ({ children }) => {
-  const [todos, dispatch] = useReducer(todoReducer, {
-    items: setupItems(),
-    buttonStatus: setupButtonStatus(setupItems()),
-    alert: { isShow: false, message: "", type: "" },
-    isEdited: false,
-    editID: "",
-  });
-  const [pomodoro, pomodoroDispatch] = useReducer(pomodoroReducer, {
-    isShowPomodoroSettings: false,
-    isOpenPomodoro: false,
-    targetItemID: "",
-    settingInfo: {
-      workMinutes: 45,
-      breakMinutes: 15,
-    },
-  });
+  const [todos, dispatch] = useReducer(todoReducer, todoInitial);
+  const [pomodoro, pomodoroDispatch] = useReducer(
+    pomodoroReducer,
+    pomodoroInitial
+  );
   const [input, setInput] = useState("");
   const inputRef = useRef();
   const [isOpenWarningModal, setIsOpenWarningModal] = useState(false);
+  const [pomodoroCycle, setPomodoroCycle] = useState({
+    itemId: "",
+    isFinished: false,
+  });
 
   return (
     <AppContext.Provider
@@ -45,6 +64,8 @@ const AppProvider = ({ children }) => {
         setIsOpenWarningModal,
         pomodoro,
         pomodoroDispatch,
+        pomodoroCycle,
+        setPomodoroCycle,
       }}
     >
       {children}

@@ -1,7 +1,7 @@
-export const getLocalStorage = () => {
-  return JSON.parse(localStorage.getItem('item'));
+export const getLocalStorage = (key) => {
+  return JSON.parse(localStorage.getItem(key));
 };
 
-export const setLocalStorage = (items) => {
-  localStorage.setItem('item', JSON.stringify(items));
+export const setLocalStorage = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value));
 };

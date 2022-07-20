@@ -1,7 +1,7 @@
 import React from "react";
 import { useGlobalContext } from "../context";
 
-const WarningModal = ({ message, handleSure }) => {
+const WarningModal = ({ message, handleSure, handleCancel }) => {
   const { isOpenWarningModal, setIsOpenWarningModal } = useGlobalContext();
 
   return (
@@ -13,10 +13,7 @@ const WarningModal = ({ message, handleSure }) => {
       <div className="modal-content">
         <h4>{message}</h4>
         <div className="warning-button-container">
-          <button
-            className="cancel-btn"
-            onClick={() => setIsOpenWarningModal(false)}
-          >
+          <button className="cancel-btn" onClick={handleCancel}>
             cancel
           </button>
           <button className="sure-btn" onClick={handleSure}>

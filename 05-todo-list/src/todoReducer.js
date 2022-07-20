@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage } from "./utils";
+import { setLocalStorage } from "./utils";
 
 const DEFAULT_TOMATO_AMOUNT = 3;
 const MAX_TOMATO_AMOUNT = 5;
@@ -38,7 +38,7 @@ export const todoReducer = (state, action) => {
     const newItems = items.map((item) =>
       item.id === editID ? { ...item, name: input } : item
     );
-    setLocalStorage(newItems);
+    setLocalStorage("item", newItems);
     return {
       ...state,
       items: newItems,
@@ -60,7 +60,7 @@ export const todoReducer = (state, action) => {
         },
       },
     ];
-    setLocalStorage(newItems);
+    setLocalStorage("item", newItems);
     return {
       ...state,
       items: newItems,
@@ -92,7 +92,7 @@ export const todoReducer = (state, action) => {
 
     case ACTIONS.DELETE_ITEM:
       const newItems = items.filter((item) => item.id !== payload.targetID);
-      setLocalStorage(newItems);
+      setLocalStorage("item", newItems);
       return {
         ...state,
         items: newItems,
@@ -112,7 +112,7 @@ export const todoReducer = (state, action) => {
       );
 
     case ACTIONS.CLEAR_ITEMS:
-      setLocalStorage([]);
+      setLocalStorage("item", []);
       return {
         ...state,
         items: [],
@@ -144,7 +144,7 @@ export const todoReducer = (state, action) => {
         }
         return item;
       });
-      setLocalStorage(increasePomodoroItems);
+      setLocalStorage("item", increasePomodoroItems);
       return { ...state, items: increasePomodoroItems };
 
     case ACTIONS.DECREASE_POMODORO:
@@ -165,8 +165,25 @@ export const todoReducer = (state, action) => {
         }
         return item;
       });
-      setLocalStorage(decreasePomodoroItems);
+      setLocalStorage("item", decreasePomodoroItems);
       return { ...state, items: decreasePomodoroItems };
+
+    case ACTIONS.CHANGE_POMODORO_AMOUNT_OF_ITEM:
+      const adjustPomodoroAmountOfItems = items.map((item) => {
+        const { itemId: targetItemId, isFinished } = payload.pomodoroCycle;
+        if (item.id === targetItemId && isFinished) {
+          return {
+            ...item,
+            pomodoros: {
+              ...item.pomodoros,
+              unfinishedAmount: item.pomodoros.unfinishedAmount--,
+            },
+          };
+        }
+        return item;
+      });
+      setLocalStorage("item", adjustPomodoroAmountOfItems);
+      return { ...state, items: adjustPomodoroAmountOfItems };
 
     default:
       throw new Error("There is no find matched action");
@@ -182,4 +199,5 @@ export const ACTIONS = {
   CLOSE_ALERT: "close_alert",
   INCREASE_POMODORO: "increase_pomodoro",
   DECREASE_POMODORO: "decrease_pomodoro",
+  CHANGE_POMODORO_AMOUNT_OF_ITEM: "change_pmodoro_amount_of_item",
 };
