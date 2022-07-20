@@ -46,7 +46,7 @@ const Timer = () => {
       if (mode === "BREAK") {
         setBreakSecondsLeft((prevSecondLeft) => prevSecondLeft - 1);
       }
-    }, 1000);
+    }, 100);
     return () => clearInterval(interval);
   }, [settingInfo, isPause, mode]);
 
@@ -81,11 +81,13 @@ const Timer = () => {
     }
   };
 
+  const itemId = pomodoroCycle.itemId;
+
   useEffect(() => {
     if (workSecondsLeft <= 0) {
-      setPomodoroCycle({ ...pomodoroCycle, isFinished: true });
+      setPomodoroCycle({ itemId, isFinished: true });
     }
-  }, [workSecondsLeft, setPomodoroCycle, pomodoroCycle]);
+  }, [workSecondsLeft, setPomodoroCycle, itemId]);
 
   useEffect(() => {
     if (workSecondsLeft <= 0 && mode === "WORK") {
@@ -96,7 +98,7 @@ const Timer = () => {
       setIsAlarming(true);
       return;
     }
-  }, [breakSecondsLeft, workSecondsLeft]);
+  }, [breakSecondsLeft, workSecondsLeft, mode]);
 
   return (
     <div>
