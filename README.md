@@ -27,8 +27,8 @@
 ## Peek Project 
 | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|
-|  |  |  |
-|  |  |  |
+| ![reviews](https://github.com/jasonLuFa/ReactTrek/blob/main/image/reviews.png) [a](https://github.com/jasonLuFa/ReactTrek/edit/main/README.md) | ![quiz](https://github.com/jasonLuFa/ReactTrek/blob/main/image/quiz.png) | ![unsplah gallery](https://github.com/jasonLuFa/ReactTrek/blob/main/image/unsplash%20gallery.png) |
+| ![cocktail](https://github.com/jasonLuFa/ReactTrek/blob/main/image/cocktail.png) | ![]() |  |
 
 ## Project list ( deep into what technology I use )
 1. [Slider][1]
