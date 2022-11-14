@@ -31,5 +31,5 @@ https://user-images.githubusercontent.com/52907691/172281155-cf066460-1632-4037-
   * [`Axios`](https://react-icons.github.io/react-icons/) ( Just use simple get request in this project )
  
 #### others
-  * [`React-Icons`](https://axios-http.com/) ( many styled icons )
+  * [`React-Icons`](https://react-icons.github.io/react-icons/) ( many styled icons )
   * [`Loaders`](https://uiball.com/loaders/) ( many styled of loading )

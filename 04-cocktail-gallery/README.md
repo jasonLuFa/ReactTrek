@@ -17,5 +17,5 @@
   * [`React Router 6`](https://reactrouter.com/docs/en/v6/getting-started/overview)
  
 #### others
-  * [`React-Icons`](https://axios-http.com/) ( many styled icons )
+  * [`React-Icons`](https://react-icons.github.io/react-icons/) ( many styled icons )
   * [`Loaders`](https://uiball.com/loaders/) ( many styled of loading )
