@@ -43,7 +43,7 @@ const Timer = () => {
       if (mode === "BREAK") {
         setBreakSecondsLeft((prevSecondLeft) => prevSecondLeft - 1);
       }
-    }, 100);
+    }, 1000);
     return () => clearInterval(interval);
   }, [settingInfo, isPause, mode]);
 
